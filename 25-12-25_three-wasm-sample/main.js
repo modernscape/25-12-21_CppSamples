@@ -9,11 +9,6 @@ PointModule().then((Module) => {
   console.log("Module.HEAPF32"); // OK
   console.log(Module.HEAPF32); // OK
 
-  //   const positions = new Float32Array(COUNT * 3);
-  //   for (let i = 0; i < COUNT * 3; i++) {
-  //     positions[i] = Module.getValue(ptr + i * 4, "float");
-  //   }
-
   // ★ここが核心：Wasm メモリをそのまま参照
   const positions = Module.HEAPF32.subarray(
     ptr >> 2, // ptr / 4
@@ -22,7 +17,7 @@ PointModule().then((Module) => {
 
   console.log(positions.slice(0, 9));
 
-  Module._free_points(ptr);
+  //   Module._free_points(ptr);
 
   // Three.js Geometry
   const geometry = new THREE.BufferGeometry();
@@ -30,7 +25,7 @@ PointModule().then((Module) => {
 
   const material = new THREE.PointsMaterial({
     size: 0.05,
-    color: 0xffffff,
+    color: 0xff0000,
   });
 
   const points = new THREE.Points(geometry, material);

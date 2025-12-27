@@ -10,8 +10,8 @@ extern "C"
 
         for (int i = 0; i < count; i++)
         {
-            data[i * 3 + 0] = (float)i * 0.02f;
-            data[i * 3 + 1] = 0.0f;
+            data[i * 3 + 0] = 0.0f;
+            data[i * 3 + 1] = (float)i * 0.1f;
             data[i * 3 + 2] = 0.0f;
         }
         return data;
