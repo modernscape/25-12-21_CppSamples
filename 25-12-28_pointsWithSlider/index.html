@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>25-12-28_pointsWithSlider</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #slider-container {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ui">
+      <input id="slider" type="range" min="100" max="5000" value="1000" />
+      <span id="value">1000</span>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
