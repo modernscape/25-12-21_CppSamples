@@ -27,4 +27,17 @@ async function init() {
   document.body.appendChild(renderer.domElement);
 
   // 初期点群
+  const slider = document.getElementById("slider");
+  createPoints(Number(slider.value));
+
+  // スライダー値表示
+  const valueLabel = document.getElementById("value");
+  slider.addEventListener("input", () => {
+    valueLabel.textContent = slider.value;
+    updatePoints(Number(slider.value));
+  });
+
+  function createPoints(count) {}
+
+  function updatePoints(count) {}
 }
