@@ -10,7 +10,6 @@ init();
 async function init() {
   wasm = await Module();
 
-  console.log(wasm);
   // --- Three.js 初期化 ---
   scene = new THREE.Scene();
 
@@ -37,7 +36,11 @@ async function init() {
     updatePoints(Number(slider.value));
   });
 
-  function createPoints(count) {}
+  function createPoints(count) {
+    console.log(count);
+  }
 
-  function updatePoints(count) {}
+  function updatePoints(count) {
+    console.log(count);
+  }
 }
