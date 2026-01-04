@@ -69,8 +69,6 @@ function getPointsFromWasm(count) {
   const copy = new Float32Array(heap);
   wasm._free_points(ptr);
 
-  console.log(copy);
-
   return copy;
 }
 
