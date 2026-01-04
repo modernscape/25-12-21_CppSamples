@@ -36,11 +36,46 @@ async function init() {
     updatePoints(Number(slider.value));
   });
 
-  function createPoints(count) {
-    console.log(count);
-  }
+  animate();
+}
 
-  function updatePoints(count) {
-    console.log(count);
-  }
+function createPoints(count) {
+  const positions = getPointsFromWasm(count); // Float32Array
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+  const material = new THREE.PointsMaterial({color: 0x44aa88, size: 0.02});
+
+  points = new THREE.Points(geometry, material);
+  scene.add(points);
+}
+
+function updatePoints(count) {
+  const positions = getPointsFromWasm(count);
+
+  points.geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  points.geometry.attributes.position.needsUpdate = true;
+}
+
+function getPointsFromWasm(count) {
+  const ptr = wasm._generate_points(count);
+
+  const heap = new Float32Array(
+    wasm.HEAPF32.buffer,
+    ptr,
+    count * 3 //
+  );
+
+  const copy = new Float32Array(heap);
+  wasm._free_points(ptr);
+
+  console.log(copy);
+
+  return copy;
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  if (points) points.rotation.z += 0.004;
+  renderer.render(scene, camera);
 }
